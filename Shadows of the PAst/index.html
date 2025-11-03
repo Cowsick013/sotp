@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midnight Investigation | Crime Thriller</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a16;
+            color: #e0e0e0;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(28, 28, 56, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(40, 10, 30, 0.4) 0%, transparent 20%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #2a2a4a;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8a2a45, transparent);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #c9c9e2;
+            text-shadow: 0 0 10px rgba(138, 42, 69, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8a8aaa;
+            font-style: italic;
+        }
+        
+        /* Story Container */
+        .story-container {
+            background-color: rgba(18, 18, 36, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a4a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2a45, #3a3a6a, #8a2a45);
+        }
+        
+        .chapter-title {
+            color: #c57b8a;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-left: 3px solid #8a2a45;
+            padding-left: 15px;
+        }
+        
+        .story-text {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        .story-text::first-letter {
+            font-size: 1.8rem;
+            color: #c57b8a;
+            font-weight: bold;
+        }
+        
+        /* Choices */
+        .choices-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .choice-btn {
+            background: rgba(42, 42, 74, 0.7);
+            border: 1px solid #3a3a6a;
+            color: #c9c9e2;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .choice-btn:hover {
+            background: rgba(58, 58, 106, 0.7);
+            border-color: #8a2a45;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 42, 69, 0.3);
+        }
+        
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 42, 69, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .choice-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Inventory */
+        .inventory {
+            background-color: rgba(18, 18, 36, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a4a;
+        }
+        
+        .inventory h3 {
+            color: #c57b8a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .inventory-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .inventory-item {
+            background: rgba(42, 42, 74, 0.7);
+            border: 1px solid #3a3a6a;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #8a8aaa;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a2a4a;
+            margin-top: 30px;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .choices-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MIDNIGHT INVESTIGATION</h1>
+            <p class="subtitle">A Crime Thriller Interactive Story</p>
+        </header>
+        
+        <div class="inventory">
+            <h3>EVIDENCE COLLECTED</h3>
+            <div class="inventory-items">
+                <div class="inventory-item">Crime Scene Photos</div>
+                <div class="inventory-item">Mysterious Note</div>
+            </div>
+        </div>
+        
+        <div class="story-container">
+            <h2 class="chapter-title">CHAPTER 1: THE MIDNIGHT CALL</h2>
+            <div class="story-text">
+                <p>The rain was falling in sheets against your office window when the phone rang. It was 2:17 AM. Only bad news comes at this hour.</p>
+                
+                <p>"Detective, we've got a situation at the old Henderson mansion," the dispatcher's voice was tense. "The security system was triggered. When officers arrived, they found the owner, billionaire industrialist Robert Henderson, dead in his study. The medical examiner estimates time of death around midnight."</p>
+                
+                <p>You grab your coat and badge, the weight of the raindrops matching the heaviness in your chest. The Henderson case wasn't supposed to end this way. You'd been investigating death threats against him for weeks, but the security was tight. Too tight for a random break-in.</p>
+                
+                <p>As you pull up to the mansion, yellow police tape flutters in the stormy wind. Officer Miller meets you at the door, his face pale. "It's bad, Detective. The study's a mess, but there's no sign of forced entry. The security system logs show it was disarmed with Henderson's own code at 11:52 PM."</p>
+                
+                <p>Inside, the opulence of the mansion contrasts sharply with the grim scene. Henderson lies slumped over his mahogany desk, a single gunshot wound to the chest. The murder weapon is nowhere to be found. On the floor beside him, you notice a torn piece of paper with what appears to be a partial phone number.</p>
+                
+                <p>The lead investigator approaches you. "We've secured the scene, but there's something you should see. The safe behind the painting was open and empty. Henderson's assistant mentioned he kept important documents there."</p>
+            </div>
+            
+            <div class="choices-container">
+                <button class="choice-btn" onclick="nextChapter(1)">Examine the security system logs more closely</button>
+                <button class="choice-btn" onclick="nextChapter(2)">Interview Henderson's family members who were in the house</button>
+                <button class="choice-btn" onclick="nextChapter(3)">Inspect the contents of Henderson's desk for clues</button>
+                <button class="choice-btn" onclick="nextChapter(4)">Follow up on the partial phone number found at the scene</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Midnight Investigation &copy; 2023 | An Interactive Crime Thriller</p>
+        </footer>
+    </div>
+
+    <script>
+        function nextChapter(choice) {
+            // In a full implementation, this would load the next part of the story
+            // based on the user's choice. For this example, we'll just show an alert.
+            alert(`You selected option ${choice}. In a complete implementation, this would advance the story based on your decision.`);
+            
+            // Example of how the story could progress:
+            const storyText = document.querySelector('.story-text');
+            const chapterTitle = document.querySelector('.chapter-title');
+            
+            if (choice === 1) {
+                chapterTitle.textContent = "CHAPTER 2: DIGITAL TRAIL";
+                storyText.innerHTML = `
+                    <p>You head to the security room where the system's control panel is located. The logs show Henderson's code was used to disarm the system at 11:52 PM, just as Officer Miller said. But something catches your eye - the system was briefly armed again at 11:58 PM, then disarmed a second time at 12:04 AM using the same code.</p>
+                    
+                    <p>"That's strange," you mutter. "Why would he disarm, rearm, then disarm again within minutes?"</p>
+                    
+                    <p>The security technician looks over your shoulder. "That is unusual. The system sends an alert to our monitoring service whenever it's disarmed outside normal hours. We received the first alert at 11:52, but not the second one at 12:04."</p>
+                    
+                    <p>You feel a chill that has nothing to do with the storm outside. Someone knew how to bypass the alert system. This wasn't a random break-in - it was someone who knew the security protocols intimately.</p>
+                `;
+            } else if (choice === 2) {
+                chapterTitle.textContent = "CHAPTER 2: FAMILY SECRETS";
+                storyText.innerHTML = `
+                    <p>You find Henderson's wife, Eleanor, in the drawing room, wrapped in a silk robe and holding a trembling teacup. Her eyes are red-rimmed but her composure is remarkably intact for a woman who just lost her husband.</p>
+                    
+                    <p>"I was in my bedroom when I heard the shot," she says, her voice steady. "Robert often worked late in his study. I thought nothing of it until the police arrived."</p>
+                    
+                    <p>Their son, Marcus, enters the room. He's disheveled, still in his evening clothes. "I just got home," he explains before you can ask. "Was at the club downtown. Dozens of people saw me there until at least 1 AM."</p>
+                    
+                    <p>But as Marcus speaks, you notice a small, almost imperceptible smudge of what looks like ink on his cuff. The same distinctive blue ink Henderson used in his fountain pen - the one still sitting on his desk in the study.</p>
+                `;
+            }
+            
+            // Update choices for the next chapter
+            const choicesContainer = document.querySelector('.choices-container');
+            choicesContainer.innerHTML = `
+                <button class="choice-btn" onclick="nextChapter(5)">Confront Marcus about the ink stain</button>
+                <button class="choice-btn" onclick="nextChapter(6)">Check the security footage from the club</button>
+                <button class="choice-btn" onclick="nextChapter(7)">Search Marcus's room for evidence</button>
+                <button class="choice-btn" onclick="nextChapter(8)">Return to examine the security system anomaly</button>
+            `;
+            
+            // Add new evidence to inventory
+            const inventoryItems = document.querySelector('.inventory-items');
+            if (choice === 1) {
+                inventoryItems.innerHTML += '<div class="inventory-item">Security System Anomaly</div>';
+            } else if (choice === 2) {
+                inventoryItems.innerHTML += '<div class="inventory-item">Ink Stain Observation</div>';
+            }
+        }
+    </script>
+</body>
+</html>
